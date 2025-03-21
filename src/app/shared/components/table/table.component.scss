@@ -1,0 +1,19 @@
+.data-row:nth-child(even) {
+  background-color: #e5e7eb;
+}
+
+.data-row:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+.table-header th:first-child {
+  border-top-left-radius: 15px;
+}
+.table-header th:last-child {
+  border-top-right-radius: 15px;
+}
+.data-row:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+.data-row:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+}

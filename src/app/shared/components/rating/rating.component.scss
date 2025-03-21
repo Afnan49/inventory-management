@@ -1,0 +1,24 @@
+@import "../../../../scss/colors.scss";
+::ng-deep {
+  .active {
+    .p-rating {
+      .p-rating-icon {
+        color: $active-color;
+      }
+    }
+  }
+  .warning {
+    .p-rating {
+      .p-rating-icon {
+        color: $warning-color;
+      }
+    }
+  }
+  .danger {
+    .p-rating {
+      .p-rating-icon {
+        color: $danger-color;
+      }
+    }
+  }
+}

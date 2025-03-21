@@ -1,0 +1,77 @@
+<div
+  class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
+>
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+    ></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <div>
+          <h1 class="text-2xl xl:text-3xl font-extrabold mb-10">Login</h1>
+        </div>
+        <div class="divide-y divide-gray-200">
+          <div
+            class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+          >
+            <div class="relative">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mx-auto max-w-md">
+                  <input
+                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                    type="email"
+                    placeholder="Email"
+                    formControlName="email"
+                    [required]="true"
+                  />
+                  @if(loginForm.get('email')?.errors?.['required'] &&
+                  loginForm.get('email')?.touched) {
+                  <small class="text-red-500 text-lg"
+                    >* Email is required</small
+                  >
+                  } @if(loginForm.get('email')?.errors?.['pattern'] &&
+                  loginForm.get('email')?.touched) {
+                  <small class="text-red-500 text-lg">* Invalid email</small>
+                  }
+                  <input
+                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    type="password"
+                    placeholder="Password"
+                    formControlName="password"
+                    [required]="true"
+                  />
+                  @if(loginForm.get('password')?.errors?.['required']&&loginForm.get('password')?.touched){
+                  <small class="text-red-500 text-lg"
+                    >* Password is required</small
+                  >
+                  }
+                  @if(loginForm.get('password')?.errors?.['minlength']&&loginForm.get('password')?.touched){
+                  <small class="text-red-500 text-lg"
+                    >* Password must be at least 6 characters</small
+                  >
+                  }
+                  <button
+                    class="mt-5 tracking-wide font-semibold bg-cyan-500 text-gray-100 w-full py-4 rounded-lg hover:bg-cyan-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  >
+                    <i class="pi pi-user-plus !text-2xl"></i>
+                    <span class="ml-3 text-2xl"> login </span>
+                  </button>
+                  <button
+                    class="mt-5 tracking-wide font-semibold w-full py-4 rounded-lg flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  >
+                    <a
+                      class="ml-3 underline text-2xl"
+                      [routerLink]="['/signup']"
+                    >
+                      Register
+                    </a>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

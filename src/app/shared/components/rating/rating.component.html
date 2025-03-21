@@ -1,0 +1,6 @@
+<div
+  class="card flex justify-center"
+  [ngClass]="config() > 3 ? 'active' : config() > 1 ? 'warning' : 'danger'"
+>
+  <p-rating [ngModel]="config()" [readonly]="canRate()" />
+</div>

@@ -1,0 +1,53 @@
+<p-table
+  [value]="config()"
+  [columns]="columns()"
+  class="w-full border-collapse"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #header>
+    <tr class="table-header">
+      @for (column of columns(); track column) { @if(column.name === 'actions'){
+      <th class="p-2 border !py-4 !bg-gray-200">
+        <p class="text-center font-bold text-lg">Actions</p>
+      </th>
+      }@else {
+      <th class="p-2 border !py-4 !bg-gray-200">
+        <p class="text-center font-bold text-lg">{{ column.label }}</p>
+      </th>
+      } }
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr class="data-row">
+      @for (column of columns(); track column) { @if(column.name ===
+      'thumbnail'){
+      <td class="p-2 border flex justify-center items-center">
+        <img
+          class="w-20 h-20"
+          [src]="product[column.name]"
+          [alt]="product.name"
+        />
+      </td>
+      }@else if(column.name === 'lastUpdated') {
+      <td class="p-2 border">
+        <p class="text-center text-lg font-medium">
+          {{ product[column.name] | date }}
+        </p>
+      </td>
+      }@else if (column.name === 'actions') {
+      <td class="p-2 border">
+        <ng-container
+          [ngTemplateOutlet]="defaultAction() || null"
+          [ngTemplateOutletContext]="{ $implicit: product }"
+        />
+      </td>
+      }@else {
+      <td class="p-2 border">
+        <p class="text-center text-lg font-medium">
+          {{ product[column.name] }}
+        </p>
+      </td>
+      } }
+    </tr>
+  </ng-template>
+</p-table>
