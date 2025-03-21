@@ -1,0 +1,8 @@
+<div>
+  <h3 class="text-lg font-semibold mb-2">{{ label() }}</h3>
+  <ul class="list-disc list-inside text-gray-700">
+    @for (feature of features(); track feature) {
+    <li class="text-lg">{{ feature }}</li>
+    }
+  </ul>
+</div>

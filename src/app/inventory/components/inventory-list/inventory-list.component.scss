@@ -1,1 +1,10 @@
-
+@import "../../../../scss/colors.scss";
+::ng-deep {
+  .p-confirmdialog-message {
+    color: $danger-color-dark !important;
+    font-size: 1.2rem !important;
+  }
+  .p-confirmdialog-icon::before {
+    color: $danger-color-dark !important;
+  }
+}

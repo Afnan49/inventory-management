@@ -1,3 +1,8 @@
-<p>
-  button works!
-</p>
+<button
+  class="flex gap-2 items-center text-white px-6 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
+  [class]="config()?.class"
+  (click)="onButtonClick(config()?.id)"
+>
+  <i [class]="config()?.icon"></i>
+  {{ config()?.label }}
+</button>

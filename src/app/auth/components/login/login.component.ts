@@ -13,20 +13,25 @@ import { User } from '../../model/user';
   providers: [AuthService],
 })
 export class LoginComponent implements OnInit {
+  //====< inject the form builder >====
   private fb = inject(FormBuilder);
+  //====< email pattern >====
   private readonly EMAIL_PATTERN =
     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  //====< inject the auth service >====
   authService = inject(AuthService);
 
   constructor() {}
 
   ngOnInit() {}
 
+  //====< login form >====
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.EMAIL_PATTERN)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  //====< on submit >====
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.logIn(this.loginForm.value as User);

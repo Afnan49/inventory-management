@@ -9,10 +9,11 @@ import { environment } from '../../../environment/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  // ===< properties >===
   http = inject(HttpClient);
   router = inject(Router);
   messageService = inject(MessageService);
-
+  // ===< decode token >===
   private decodeToken(token: string): any {
     try {
       const payloadBase64 = token.split('.')[1];
@@ -22,7 +23,7 @@ export class AuthService {
       return null;
     }
   }
-
+  // ===< generate token >===
   private generateToken(user: User): string {
     const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
     const payload = btoa(
@@ -35,7 +36,7 @@ export class AuthService {
     const signature = btoa('dummy-signature');
     return `${header}.${payload}.${signature}`;
   }
-
+  // ===< is logged in >===
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     if (!token) return false;
@@ -55,7 +56,7 @@ export class AuthService {
       return false;
     }
   }
-
+  // ===< get current user >===
   getCurrentUser() {
     const token = localStorage.getItem('token');
     if (!token) return null;
@@ -66,7 +67,7 @@ export class AuthService {
       return null;
     }
   }
-
+  // ===< log out >===
   logOut() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
@@ -76,7 +77,7 @@ export class AuthService {
       detail: 'You have been successfully logged out',
     });
   }
-
+  // ===< log in >===
   logIn(User: User) {
     this.http.get(`${environment.BaseUrl}/users`).subscribe({
       next: (res: any) => {
@@ -110,7 +111,7 @@ export class AuthService {
       },
     });
   }
-
+  // ===< sign up >===
   signUp(user: User) {
     this.http.post(`${environment.BaseUrl}/users`, user).subscribe({
       next: () => {

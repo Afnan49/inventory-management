@@ -1,0 +1,7 @@
+<input
+  type="text"
+  class="search-input border border-gray-300 rounded-md p-2 w-full text-xl font-medium outline-none"
+  placeholder="Search"
+  [(ngModel)]="searchControl"
+  (input)="search.emit(searchControl)"
+/>

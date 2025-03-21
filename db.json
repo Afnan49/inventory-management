@@ -1,39 +1,11 @@
 {
   "users": [
     {
-      "id": "2",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@doe.com",
-      "password": "password"
-    },
-    {
-      "id": "3",
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john@smith.com",
-      "password": "password"
-    },
-    {
-      "id": "4",
-      "firstName": "Jane",
-      "lastName": "Smith",
-      "email": "jane@smith.com",
-      "password": "password"
-    },
-    {
-      "id": "bc50",
-      "FirstName": "Ahmed",
-      "LastName": "Ali",
-      "email": "Ahmed@gmail.com",
-      "password": "5678910"
-    },
-    {
-      "id": "368c",
+      "id": "be5a",
       "FirstName": "Afnan",
       "LastName": "Mahmoud",
       "email": "afnan@gmail.com",
-      "password": "Afnan@123"
+      "password": "afnan@123"
     }
   ],
   "products": [
@@ -56,6 +28,12 @@
         "https://i.ibb.co/3mVHkLpd/smartphone4.webp",
         "https://i.ibb.co/8LDvZFzm/smartphone5.webp",
         "https://i.ibb.co/kgbVfY1V/smartphone6.webp"
+      ],
+      "features": [
+        "Industry-leading noise cancellation",
+        "30-hour battery life",
+        "Touch sensor controls",
+        "Speak-to-chat technology"
       ]
     },
     {
@@ -63,6 +41,10 @@
       "name": "Tablet",
       "category": "Electronics",
       "stock": 30,
+      "price": 10000,
+      "rating": 3,
+      "reviews": 100,
+      "description": "Tablet, 10.1 inch, 128GB Storage, 4GB RAM, Awesome Lemon -1 Year Warranty/Local Version",
       "lastUpdated": "2024-01-03",
       "thumbnail": "https://i.ibb.co/ksr5dsZ5/tablet.webp",
       "images": [
@@ -70,6 +52,12 @@
         "https://i.ibb.co/3m5G6XNB/tablet1.webp",
         "https://i.ibb.co/wNPzqMYw/tablet2.webp",
         "https://i.ibb.co/2YfhBxtr/tablet3.webp"
+      ],
+      "features": [
+        "Industry-leading noise cancellation",
+        "30-hour battery life",
+        "Touch sensor controls",
+        "Speak-to-chat technology"
       ]
     },
     {
@@ -77,6 +65,11 @@
       "name": "Mouse",
       "category": "Accessories",
       "stock": 30,
+      "price": 10000,
+      "priceAfterDiscount": 8000,
+      "rating": 2,
+      "reviews": 100,
+      "description": "Mouse, 10.1 inch, 128GB Storage, 4GB RAM, Awesome Lemon -1 Year Warranty/Local Version",
       "lastUpdated": "2024-01-03",
       "thumbnail": "https://i.ibb.co/s9hf453z/mouse.webp",
       "images": [
@@ -85,13 +78,23 @@
         "https://i.ibb.co/vC69W3dL/mouse2.webp",
         "https://i.ibb.co/Mk1f2jNH/mouse3.webp",
         "https://i.ibb.co/MxgdR5wR/mouse5.webp"
+      ],
+      "features": [
+        "Industry-leading noise cancellation",
+        "30-hour battery life",
+        "Touch sensor controls",
+        "Speak-to-chat technology"
       ]
     },
     {
-      "id": "6",
+      "id": "5",
       "name": "Monitor",
       "category": "Electronics",
       "stock": 50,
+      "price": 10000,
+      "rating": 4,
+      "reviews": 100,
+      "description": "Monitor, 10.1 inch, 128GB Storage, 4GB RAM, Awesome Lemon -1 Year Warranty/Local Version",
       "lastUpdated": "2024-01-05",
       "thumbnail": "https://i.ibb.co/S4B77J45/monitor.webp",
       "images": [
@@ -99,13 +102,24 @@
         "https://i.ibb.co/WN59Skht/monitor1.webp",
         "https://i.ibb.co/ZRnBbYL5/monitor3.webp",
         "https://i.ibb.co/6JbV8kPn/monitor4.webp"
+      ],
+      "features": [
+        "Industry-leading noise cancellation",
+        "30-hour battery life",
+        "Touch sensor controls",
+        "Speak-to-chat technology"
       ]
     },
     {
-      "id": "1",
+      "id": "6",
       "name": "Laptop",
       "category": "Electronics",
       "stock": 10,
+      "price": 10000,
+      "priceAfterDiscount": 8000,
+      "rating": 5,
+      "reviews": 100,
+      "description": "Laptop, 10.1 inch, 128GB Storage, 4GB RAM, Awesome Lemon -1 Year Warranty/Local Version",
       "lastUpdated": "2024-01-01",
       "thumbnail": "https://i.ibb.co/JRyBdLq0/lap.webp",
       "images": [
@@ -114,6 +128,12 @@
         "https://i.ibb.co/HfjwMC4p/lap2.webp",
         "https://i.ibb.co/vCrqRNpR/lap3.webp",
         "https://i.ibb.co/tPwWc4GQ/lap4.webp"
+      ],
+      "features": [
+        "Industry-leading noise cancellation",
+        "30-hour battery life",
+        "Touch sensor controls",
+        "Speak-to-chat technology"
       ]
     }
   ]
