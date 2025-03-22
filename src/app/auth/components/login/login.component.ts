@@ -3,12 +3,12 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../model/user';
-
+import { InputComponent } from '../../../shared/components/input/input.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, InputComponent],
   standalone: true,
   providers: [AuthService],
 })
@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.loginForm.valueChanges.subscribe((value) => {
+    //   console.log(value);
+    // });
+  }
 
   //====< login form >====
   loginForm = this.fb.group({

@@ -15,95 +15,90 @@
             <div class="col-span-6 sm:col-span-3">
               <label
                 for="name"
-                class="text-sm font-medium text-gray-900 block mb-2"
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
                 >Product Name</label
               >
-              <input
-                type="text"
-                id="name"
-                formControlName="name"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none"
-                placeholder="Enter product name"
+              <app-input
+                [inputId]="'name'"
+                [type]="'text'"
+                [placeholder]="'Enter product name'"
+                [controlName]="'name'"
+                [control]="productForm.get('name')"
+                [class]="
+                  'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
               />
-              @if(productForm.get('name')?.invalid &&
-              productForm.get('name')?.touched) {
-              <small class="text-red-500">Product name is required</small>
-              }
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label
                 for="category"
-                class="text-sm font-medium text-gray-900 block mb-2"
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
                 >Category</label
               >
-              <input
-                type="text"
-                id="category"
-                formControlName="category"
-                class="shadow-sm outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Enter category"
+              <app-input
+                [inputId]="'category'"
+                [type]="'text'"
+                [placeholder]="'Enter category'"
+                [controlName]="'category'"
+                [control]="productForm.get('category')"
+                [class]="
+                  'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
               />
-              @if(productForm.get('category')?.invalid &&
-              productForm.get('category')?.touched) {
-              <small class="text-red-500">Category is required</small>
-              }
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label
                 for="stock"
-                class="text-sm font-medium text-gray-900 block mb-2"
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
                 >Stock</label
               >
-              <input
-                type="number"
-                id="stock"
-                formControlName="stock"
-                class="shadow-sm outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Enter stock quantity"
+              <app-input
+                [inputId]="'stock'"
+                [type]="'number'"
+                [placeholder]="'Enter stock quantity'"
+                [controlName]="'stock'"
+                [control]="productForm.get('stock')"
+                [class]="
+                  'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
               />
-              @if(productForm.get('stock')?.invalid &&
-              productForm.get('stock')?.touched) {
-              <small class="text-red-500"
-                >Stock must be a positive number</small
-              >
-              }
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label
                 for="price"
-                class="text-sm font-medium text-gray-900 block mb-2"
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
                 >Price</label
               >
-              <input
-                type="number"
-                id="price"
-                formControlName="price"
-                class="shadow-sm outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Enter price"
+              <app-input
+                [inputId]="'price'"
+                [type]="'number'"
+                [placeholder]="'Enter price'"
+                [controlName]="'price'"
+                [control]="productForm.get('price')"
+                [class]="
+                  'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
               />
-              @if(productForm.get('price')?.invalid &&
-              productForm.get('price')?.touched) {
-              <small class="text-red-500"
-                >Price must be a positive number</small
-              >
-              }
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label
                 for="priceAfterDiscount"
-                class="text-sm font-medium text-gray-900 block mb-2"
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
                 >Price After Discount</label
               >
-              <input
-                type="number"
-                id="priceAfterDiscount"
-                formControlName="priceAfterDiscount"
-                class="shadow-sm outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Enter discounted price"
+              <app-input
+                [inputId]="'priceAfterDiscount'"
+                [type]="'number'"
+                [placeholder]="'Enter discounted price'"
+                [controlName]="'priceAfterDiscount'"
+                [control]="productForm.get('priceAfterDiscount')"
+                [class]="
+                  'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
               />
             </div>
             <div class="col-span-6 sm:col-span-3">
@@ -140,7 +135,10 @@
               </div>
             </div>
             <div class="col-span-6">
-              <label class="text-sm font-medium text-gray-900 block mb-2">
+              <label
+                class="text-sm font-medium text-gray-900 block mb-2 cursor-pointer"
+                for="features"
+              >
                 Product Features
               </label>
 
@@ -149,11 +147,16 @@
                   *ngFor="let feature of features.controls; let i = index"
                   class="flex gap-2 items-center"
                 >
-                  <input
-                    type="text"
-                    [formControlName]="i"
-                    class="shadow-sm mb-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none"
-                    placeholder="Enter feature"
+                  <app-input
+                    [inputId]="'feature'"
+                    [type]="'text'"
+                    [placeholder]="'Enter feature'"
+                    [controlName]="'feature'"
+                    [control]="feature"
+                    [class]="
+                      'shadow-sm mb-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                    "
+                    class="w-full"
                   />
                   <button
                     type="button"
@@ -179,17 +182,14 @@
                 class="text-sm font-medium text-gray-900 block mb-2"
                 >Product Description</label
               >
-              <textarea
-                id="description"
-                formControlName="description"
-                rows="6"
-                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4"
-                placeholder="Enter product description"
-              ></textarea>
-              @if(productForm.get('description')?.invalid &&
-              productForm.get('description')?.touched) {
-              <small class="text-red-500">Description is required</small>
-              }
+              <app-textarea
+                [inputId]="'description'"
+                [placeholder]="'Enter product description'"
+                [control]="productForm.get('description')"
+                [class]="
+                  'shadow-sm mb-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 outline-none'
+                "
+              />
             </div>
           </div>
 

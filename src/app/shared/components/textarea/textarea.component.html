@@ -1,0 +1,13 @@
+<textarea
+  [id]="inputId()"
+  rows="6"
+  [class]="class()"
+  [placeholder]="placeholder()"
+  [formControl]="control()"
+></textarea>
+@if(control().touched&&control().invalid){ @for(error of control().errors
+|keyvalue; track error.key){
+<small class="text-red-500 text-lg">{{
+  getErrorMessage(error.key, error.value)
+}}</small>
+} }

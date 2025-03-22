@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { environment } from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UploadService {
-  private readonly IMGBB_API_KEY = '2e505d19713890ecabeee7c469ad9617';
+  private readonly IMGBB_API_KEY = environment.imgbbApiKey;
   private readonly UPLOAD_URL = 'https://api.imgbb.com/1/upload';
 
   constructor(private http: HttpClient) {}

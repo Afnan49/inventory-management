@@ -16,7 +16,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderTitleComponent } from '../../../shared/components/header-title/header-title.component';
 import { UploadService } from '../../../shared/services/upload.service';
-
+import { InputComponent } from '../../../shared/components/input/input.component';
+import { TextareaComponent } from '../../../shared/components/textarea/textarea.component';
 @Component({
   selector: 'app-inventory-add',
   templateUrl: './inventory-add.component.html',
@@ -29,6 +30,8 @@ import { UploadService } from '../../../shared/services/upload.service';
     ReactiveFormsModule,
     CommonModule,
     HeaderTitleComponent,
+    InputComponent,
+    TextareaComponent,
   ],
   providers: [MessageService],
 })
@@ -57,7 +60,10 @@ export class InventoryAddComponent implements OnInit {
       description: ['', [Validators.required]],
       thumbnail: ['', [Validators.required]],
       images: [[], [Validators.required, Validators.minLength(1)]],
-      features: this.fb.array([]),
+      features: this.fb.array(
+        [],
+        [Validators.required, Validators.minLength(1)]
+      ),
     });
   }
 

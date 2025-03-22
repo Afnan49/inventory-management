@@ -1,0 +1,13 @@
+<input
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [formControl]="control()"
+  [class]="class()"
+  [id]="inputId()"
+/>
+@if(control().touched&&control().invalid) { @for (error of control().errors |
+keyvalue; track error.key) {
+<small class="text-red-500 text-lg">{{
+  getErrorMessage(error.key, error.value)
+}}</small>
+} }
