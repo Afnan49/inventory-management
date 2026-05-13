@@ -1,0 +1,21 @@
+services:
+  # Backend - JSON Server API
+  - type: web
+    name: inventory-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm run start:server
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  # Frontend - Angular App
+  - type: web
+    name: inventory-management
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist/inventory-management/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

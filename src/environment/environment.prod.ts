@@ -1,4 +1,4 @@
 export const environment = {
-  BaseUrl: 'http://localhost:3000',
+  BaseUrl: 'https://your-api-name.onrender.com', // Replace with your deployed API URL
   production: true,
 };
