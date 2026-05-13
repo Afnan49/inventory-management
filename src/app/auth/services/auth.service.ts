@@ -31,7 +31,7 @@ export class AuthService {
         email: user.email,
         id: user.id,
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
-      })
+      }),
     );
     const signature = btoa('dummy-signature');
     return `${header}.${payload}.${signature}`;
@@ -79,10 +79,10 @@ export class AuthService {
   }
   // ===< log in >===
   logIn(User: User) {
-    this.http.get(`${environment.BaseUrl}/users`).subscribe({
+    this.http.get(`${environment.BaseUrl}users`).subscribe({
       next: (res: any) => {
         const user = res.find(
-          (u: User) => u.email === User.email && u.password === User.password
+          (u: User) => u.email === User.email && u.password === User.password,
         );
         if (user) {
           const token = this.generateToken(user);
@@ -113,7 +113,7 @@ export class AuthService {
   }
   // ===< sign up >===
   signUp(user: User) {
-    this.http.post(`${environment.BaseUrl}/users`, user).subscribe({
+    this.http.post(`${environment.BaseUrl}users`, user).subscribe({
       next: () => {
         this.router.navigate(['/login']);
       },
