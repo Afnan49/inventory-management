@@ -8,6 +8,10 @@ const port = process.env.PORT || 3000;
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
+server.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 // Add CORS headers
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
