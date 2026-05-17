@@ -13,6 +13,12 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
   messageService = inject(MessageService);
+
+  private buildApiUrl(path: string): string {
+    const base = (environment.BaseUrl || '').trim();
+    return `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+  }
+
   // ===< decode token >===
   private decodeToken(token: string): any {
     try {
@@ -79,7 +85,7 @@ export class AuthService {
   }
   // ===< log in >===
   logIn(User: User) {
-    this.http.get(`${environment.BaseUrl}/users`).subscribe({
+    this.http.get(this.buildApiUrl('users')).subscribe({
       next: (res: any) => {
         const user = res.find(
           (u: User) => u.email === User.email && u.password === User.password,
@@ -102,10 +108,16 @@ export class AuthService {
         }
       },
       error: (error) => {
+        const isHtmlResponse =
+          typeof error?.error?.text === 'string' &&
+          error.error.text.toLowerCase().includes('<!doctype');
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'An error occurred while logging in',
+          detail: isHtmlResponse
+            ? 'Backend URL is incorrect: it returned HTML instead of JSON.'
+            : 'An error occurred while logging in',
         });
         console.error('Login error:', error);
       },
@@ -113,15 +125,21 @@ export class AuthService {
   }
   // ===< sign up >===
   signUp(user: User) {
-    this.http.post(`${environment.BaseUrl}/users`, user).subscribe({
+    this.http.post(this.buildApiUrl('users'), user).subscribe({
       next: () => {
         this.router.navigate(['/login']);
       },
       error: (error) => {
+        const isHtmlResponse =
+          typeof error?.error?.text === 'string' &&
+          error.error.text.toLowerCase().includes('<!doctype');
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'An error occurred while signing up',
+          detail: isHtmlResponse
+            ? 'Backend URL is incorrect: it returned HTML instead of JSON.'
+            : 'An error occurred while signing up',
         });
         console.error('Signup error:', error);
       },
