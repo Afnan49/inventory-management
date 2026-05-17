@@ -5,3 +5,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  max-width: 1140px;
+  padding: 30px;
+}
+body {
+  color: #ffffff;
+}

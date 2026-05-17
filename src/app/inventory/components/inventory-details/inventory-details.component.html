@@ -10,19 +10,21 @@
       <div
         class="product-details w-full md:w-1/2 px-4 flex flex-col gap-3 justify-center"
       >
-        <h2 class="text-3xl font-bold mb-2">{{ product().name }}</h2>
+        <h2 class="text-3xl font-bold mb-2 text-gray-700">
+          {{ product().name }}
+        </h2>
         <div class="mb-4">
-          @if(product().priceAfterDiscount) {
-          <span class="text-2xl font-bold mr-2">{{
-            product().priceAfterDiscount | currency
-          }}</span>
-          <span class="text-gray-500 line-through">{{
-            product().price | currency
-          }}</span>
-          }@else {
-          <span class="text-2xl font-bold mr-2">{{
-            product().price | currency
-          }}</span>
+          @if (product().priceAfterDiscount) {
+            <span class="text-2xl font-bold mr-2 text-gray-700">{{
+              product().priceAfterDiscount | currency
+            }}</span>
+            <span class="text-gray-500 line-through">{{
+              product().price | currency
+            }}</span>
+          } @else {
+            <span class="text-2xl font-bold mr-2 text-gray-700">{{
+              product().price | currency
+            }}</span>
           }
         </div>
         <div class="mb-4 flex items-center">
@@ -45,7 +47,7 @@
 
         <div class="flex space-x-4 mb-6">
           @for (button of detailsButton; track button.id) {
-          <app-button [config]="button" (onClick)="onButtonClick($event)" />
+            <app-button [config]="button" (onClick)="onButtonClick($event)" />
           }
         </div>
         <app-features
