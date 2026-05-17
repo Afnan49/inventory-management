@@ -1,0 +1,11 @@
+services:
+  # Frontend - Angular App
+  - type: web
+    name: inventory-management
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist/inventory-management/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
