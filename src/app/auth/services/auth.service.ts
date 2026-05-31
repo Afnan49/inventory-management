@@ -98,7 +98,7 @@ export class AuthService {
             summary: 'Success',
             detail: 'Login successful!',
           });
-          this.router.navigate(['/inventory']);
+          this.router.navigate(['/dashboard']);
         } else {
           this.messageService.add({
             severity: 'error',

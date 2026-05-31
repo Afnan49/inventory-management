@@ -13,11 +13,13 @@ import { routes } from './app.routes';
 import { loadingInterceptor } from './layout/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { provideHighcharts } from 'highcharts-angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHighcharts(),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors([loadingInterceptor])),
     importProvidersFrom([BrowserAnimationsModule, NgxSpinnerModule]),

@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
 @import "primeicons/primeicons.css";
 @import "scss/colors.scss";
 @tailwind base;
@@ -10,6 +12,10 @@
   max-width: 1140px;
   padding: 30px;
 }
+
 body {
-  color: #ffffff;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #1e293b;
+  background: #f1f5f9;
 }

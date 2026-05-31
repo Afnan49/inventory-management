@@ -1,16 +1,75 @@
-<header class="main-header bg-gray-300 p-4 mb-8">
-  <nav class="container">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-      <h1 class="text-2xl font-bold text-center text-black">
-        Inventory Management
-      </h1>
-      <app-button
-        (onClick)="authService.logOut()"
-        [config]="buttonConfig"
-      ></app-button>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">
+        <i class="pi pi-box"></i>
+      </div>
+      <div>
+        <p class="brand-eyebrow">KANBAN</p>
+        <h1 class="brand-title">Inventory Hub</h1>
+      </div>
     </div>
-  </nav>
-</header>
+
+    <nav class="nav-list">
+      @for (item of primaryNavigation; track item.label) {
+        @if (item.disabled) {
+          <span class="nav-link disabled-link">
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+            <small>Soon</small>
+          </span>
+        } @else {
+          <a
+            class="nav-link"
+            [routerLink]="item.route"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: item.exact || false }"
+          >
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      @for (item of footerNavigation; track item.label) {
+        <span class="nav-link disabled-link">
+          <i [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+          <small>Soon</small>
+        </span>
+      }
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="workspace-header">
+      <label class="search-box">
+        <i class="pi pi-search"></i>
+        <input type="text" placeholder="Search product, supplier, order" />
+      </label>
+
+      <div class="workspace-tools">
+        <button type="button" class="icon-button" aria-label="Notifications">
+          <i class="pi pi-bell"></i>
+        </button>
+        <div class="avatar" [title]="currentUserInitial">
+          {{ currentUserInitial }}
+        </div>
+        <app-button
+          (onClick)="authService.logOut()"
+          [config]="buttonConfig"
+        ></app-button>
+      </div>
+    </header>
+
+    <section class="workspace-content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>
+
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"
   size="medium"
@@ -20,4 +79,3 @@
 >
   <p class="text-center text-2xl font-bold text-white">Loading...</p>
 </ngx-spinner>
-<router-outlet />

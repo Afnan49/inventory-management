@@ -1,0 +1,184 @@
+<section class="dashboard-page">
+	@if (isLoading) {
+		<div class="state-card">
+			<i class="pi pi-spin pi-spinner"></i>
+			<p>Loading dashboard metrics...</p>
+		</div>
+	} @else if (errorMessage) {
+		<div class="state-card error-state">
+			<i class="pi pi-exclamation-triangle"></i>
+			<p>{{ errorMessage }}</p>
+			<button type="button" class="state-action" (click)="loadDashboardData()">
+				Retry
+			</button>
+		</div>
+	} @else if (productCount === 0) {
+		<div class="state-card">
+			<i class="pi pi-inbox"></i>
+			<p>No products available yet. Add products to see dashboard analytics.</p>
+			<a class="state-action" [routerLink]="['/inventory/add']">Add Product</a>
+		</div>
+	} @else {
+		<div class="kpi-grid">
+			<article class="kpi-card tone-cyan">
+				<div class="kpi-icon"><i class="pi pi-objects-column"></i></div>
+				<p class="kpi-label">Quantity In Hand</p>
+				<h2 class="kpi-value">{{ totalQuantityInHand | number: '1.0-0' }}</h2>
+				<p class="kpi-meta">Across {{ productCount }} products</p>
+			</article>
+
+			<article class="kpi-card tone-teal">
+				<div class="kpi-icon"><i class="pi pi-th-large"></i></div>
+				<p class="kpi-label">Categories</p>
+				<h2 class="kpi-value">{{ categoryCount }}</h2>
+				<p class="kpi-meta">Last update {{ latestUpdate | date: 'MMM d, y' }}</p>
+			</article>
+
+			<article class="kpi-card tone-amber">
+				<div class="kpi-icon"><i class="pi pi-wallet"></i></div>
+				<p class="kpi-label">Inventory Value</p>
+				<h2 class="kpi-value">EGP {{ totalInventoryValue | number: '1.0-0' }}</h2>
+				<p class="kpi-meta">Before discount</p>
+			</article>
+
+			<article class="kpi-card tone-orange">
+				<div class="kpi-icon"><i class="pi pi-percentage"></i></div>
+				<p class="kpi-label">Discount Impact</p>
+				<h2 class="kpi-value">EGP {{ discountImpact | number: '1.0-0' }}</h2>
+				<p class="kpi-meta">Current value EGP {{ discountedInventoryValue | number: '1.0-0' }}</p>
+			</article>
+
+			<article class="kpi-card tone-indigo">
+				<div class="kpi-icon"><i class="pi pi-star"></i></div>
+				<p class="kpi-label">Average Rating</p>
+				<h2 class="kpi-value">{{ averageRating | number: '1.1-2' }}</h2>
+				<p class="kpi-meta">From product ratings</p>
+			</article>
+
+			<article class="kpi-card tone-slate">
+				<div class="kpi-icon"><i class="pi pi-chart-line"></i></div>
+				<p class="kpi-label">Low Stock Items</p>
+				<h2 class="kpi-value">{{ lowStockProducts.length }}</h2>
+				<p class="kpi-meta">Threshold below {{ lowStockThreshold }} units</p>
+			</article>
+		</div>
+
+		<div class="panel-grid">
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Stock By Category</h3>
+					<p>Distribution of total quantity by product category</p>
+				</header>
+				<highcharts-chart
+					class="chart-host"
+					[options]="stockByCategoryChart"
+				></highcharts-chart>
+			</article>
+
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Inventory Value By Category</h3>
+					<p>Effective value using discounted price when available</p>
+				</header>
+				<highcharts-chart
+					class="chart-host"
+					[options]="valueByCategoryChart"
+				></highcharts-chart>
+			</article>
+		</div>
+
+		<div class="panel-grid">
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Value Trend By Last Update</h3>
+					<p>Stock units and value movement grouped by update date</p>
+				</header>
+				<highcharts-chart
+					class="chart-host"
+					[options]="valueTrendChart"
+				></highcharts-chart>
+			</article>
+
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Rating Distribution</h3>
+					<p>How products are spread across 1 to 5 star ratings</p>
+				</header>
+				<highcharts-chart
+					class="chart-host"
+					[options]="ratingDistributionChart"
+				></highcharts-chart>
+			</article>
+		</div>
+
+		<div class="insight-grid">
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Top Stock Products</h3>
+					<a [routerLink]="['/inventory']">See all</a>
+				</header>
+
+				<div class="table-wrapper">
+					<table class="data-table">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Category</th>
+								<th>Stock</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for (product of topStockProducts; track product.id) {
+								<tr>
+									<td>
+										<a [routerLink]="['/inventory/details', product.id]">
+											{{ product.name }}
+										</a>
+									</td>
+									<td>{{ product.category }}</td>
+									<td>{{ product.stock }}</td>
+									<td>EGP {{ getInventoryValue(product) | number: '1.0-0' }}</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</article>
+
+			<article class="dashboard-panel">
+				<header class="panel-header">
+					<h3>Low Quantity Stock</h3>
+					<a [routerLink]="['/inventory']">See all</a>
+				</header>
+
+				<div class="low-stock-list">
+					@for (product of lowStockProducts; track product.id) {
+						<article class="low-stock-item">
+							<img [src]="product.thumbnail" [alt]="product.name" />
+
+							<div class="low-stock-details">
+								<a [routerLink]="['/inventory/details', product.id]">
+									{{ product.name }}
+								</a>
+								<p>
+									Remaining Quantity:
+									<span>{{ product.stock }} pieces</span>
+								</p>
+							</div>
+
+							<span
+								class="stock-badge"
+								[class.stock-badge-critical]="isCriticalStock(product.stock)"
+							>
+								{{ isCriticalStock(product.stock) ? 'Critical' : 'Low' }}
+							</span>
+						</article>
+					} @empty {
+						<p class="empty-hint">No low stock products below the configured threshold.</p>
+					}
+				</div>
+			</article>
+		</div>
+	}
+</section>

@@ -11,6 +11,14 @@ export const routes: Routes = [
     component: LayoutComponent,
     canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./dashboard/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent,
+          ),
+      },
       {
         path: 'inventory',
         children: inventoryRoutes,
@@ -20,6 +28,10 @@ export const routes: Routes = [
   {
     path: '',
     children: authRoutes,
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
   },
 ];
 
